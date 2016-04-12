@@ -73,23 +73,26 @@ void eraseArrays() {
 
 
 void printArrays() {
+  Serial.print("unsigned int s[] = { ");
   for (int i=0; i<ARRAY_SIZE; i++) {
     Serial.print(data_s[i]);
-    Serial.print(",");
+    if (i<ARRAY_SIZE-1) { Serial.print(","); }
   }
-  Serial.println();
+  Serial.println(" }");
 
+  Serial.print("unsigned int i[] = { ");
   for (int i=0; i<ARRAY_SIZE; i++) {
     Serial.print(data_i[i]);
-    Serial.print(",");
+    if (i<ARRAY_SIZE-1) { Serial.print(","); }
   }
-  Serial.println();
+  Serial.println(" }");
 
+  Serial.print("unsigned int d[] = { ");
   for (int i=0; i<ARRAY_SIZE; i++) {
     Serial.print(data_d[i]);
-    Serial.print(",");
+    if (i<ARRAY_SIZE-1) { Serial.print(","); }
   }
-  Serial.println();
+  Serial.println(" }");
   Serial.println("--------------------");
 
 }

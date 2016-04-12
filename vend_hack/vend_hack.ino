@@ -72,13 +72,9 @@ void printArrays() {
 }
 
 void fakeQuarter() {
-  unsigned int s[] = {
-    384,18048,3044,17116,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-  unsigned int i[] = {
-    0,44172,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
-  unsigned int d[] = {
-
-  480,1688,1640,1692,6696,3380,5996,1692,1644,1732,6704,3324,1,0,0,0,0,0,0  };
+  unsigned int s[] = { 384,18048,3044,17116,0};
+  unsigned int i[] = { 0,44172,0 };
+  unsigned int d[] = { 480,1688,1640,1692,6696,3380,5996,1692,1644,1732,6704,3324,0  };
 
 
 
@@ -111,6 +107,7 @@ void fakeQuarter() {
         } 
         else {
           s_done = true;
+          digitalWrite(OUT_SEND_PIN,LOW);
         }  
       }
 
@@ -122,6 +119,7 @@ void fakeQuarter() {
       } 
       else {
         i_done = true;
+        digitalWrite(OUT_INTR_PIN,LOW);
       }  
     }
 
@@ -133,6 +131,7 @@ void fakeQuarter() {
       } 
       else {
         d_done = true;
+        digitalWrite(OUT_DATA_PIN,LOW);
       }  
     }
 

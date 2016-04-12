@@ -41,6 +41,9 @@ void setup() {
   Serial.println("Welcome!");
 }
 
+void(* resetFunc) (void) = 0;//declare reset function at address 0
+
+
 unsigned long epoch_micros;
 boolean is_in_message = false;
 
@@ -155,8 +158,15 @@ void fakeQuarter(unsigned int s[], unsigned int i[], unsigned int d[]) {
   Serial.println("Fake Done!");
 }
 
-
-boolean callFake = true;
+void dollar() {
+    fakeQuarter(QUARTER1_S,QUARTER1_I,QUARTER1_D);
+    delay(500);
+    fakeQuarter(QUARTER2_S,QUARTER2_I,QUARTER2_D);
+    delay(500);
+    fakeQuarter(QUARTER3_S,QUARTER3_I,QUARTER3_D);
+    delay(500);
+    fakeQuarter(QUARTER4_S,QUARTER4_I,QUARTER4_D);
+}
 
 void loop() {
   unsigned long time = micros();
@@ -193,11 +203,8 @@ void loop() {
   }
 
   if (idx_s > ARRAY_SIZE || idx_i > ARRAY_SIZE || idx_d > ARRAY_SIZE) {
-    Serial.println("HALTING!");
-    while (true) {
-      delay(500);
-      Serial.println("HALTED.");
-    }
+    Serial.println("UNEXPECTED!");
+    resetFunc(); //call reset
   }
 
   last_s = s;
@@ -213,17 +220,8 @@ void loop() {
     eraseArrays();
   }
   
-  if (callFake && time>3300000) {
-    Serial.println("Calling Fake");
-    fakeQuarter(QUARTER1_S,QUARTER1_I,QUARTER1_D);
-    delay(500);
-    fakeQuarter(QUARTER2_S,QUARTER2_I,QUARTER2_D);
-    delay(500);
-    fakeQuarter(QUARTER3_S,QUARTER3_I,QUARTER3_D);
-    delay(500);
-    fakeQuarter(QUARTER4_S,QUARTER4_I,QUARTER4_D);
-
-    callFake=false;
+  if (digitalRead(IN_RASPI)==HIGH) {
+    dollar();
   }
 
 }

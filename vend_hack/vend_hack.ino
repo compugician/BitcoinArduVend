@@ -6,7 +6,25 @@
 #define OUT_INTR_PIN 6
 #define OUT_DATA_PIN 7
 
+#define IN_RASPI 10
+
 #define MAX_MESSAGE_LENGTH_MILLIS 500
+
+unsigned int QUARTER1_S[] = { 1764,18004,3076,17104,0 };
+unsigned int QUARTER1_I[] = { 0,45508,0 };
+unsigned int QUARTER1_D[] = { 1856,6696,5020,3392,5972,6744,5012,3352,0 };
+//--------------------
+unsigned int QUARTER2_S[] = { 3848,18052,3076,17104,0 };
+unsigned int QUARTER2_I[] = { 0,47640,0 };
+unsigned int QUARTER2_D[] = { 3940,6696,5020,3392,6020,6744,5012,3352,0 };
+//--------------------
+unsigned int QUARTER3_S[] = { 3080,18096,3076,17100,0 };
+unsigned int QUARTER3_I[] = { 0,46912,0 };
+unsigned int QUARTER3_D[] = { 3124,6744,5020,3392,6064,6740,5020,3348,0 };
+//--------------------
+unsigned int QUARTER4_S[] = { 456,18096,3076,17100,0 };
+unsigned int QUARTER4_I[] = { 0,44292,0 };
+unsigned int QUARTER4_D[] = { 500,6744,5020,3392,6064,6736,5020,3352,33504,1720,3348,1676,5020,3348,0 };
 
 void setup() {
   pinMode(IN_SEND_PIN, INPUT_PULLUP);
@@ -16,6 +34,8 @@ void setup() {
   pinMode(OUT_SEND_PIN, OUTPUT);
   pinMode(OUT_INTR_PIN, OUTPUT);
   pinMode(OUT_DATA_PIN, OUTPUT);
+
+  pinMode(IN_RASPI, INPUT);
 
   Serial.begin(9600);
   Serial.println("Welcome!");

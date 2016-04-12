@@ -91,13 +91,7 @@ void printArrays() {
 
 }
 
-void fakeQuarter() {
-  unsigned int s[] = { 384,18048,3044,17116,0};
-  unsigned int i[] = { 0,44172,0 };
-  unsigned int d[] = { 480,1688,1640,1692,6696,3380,5996,1692,1644,1732,6704,3324,0  };
-
-
-
+void fakeQuarter(unsigned int s[], unsigned int i[], unsigned int d[]) {
   int index_s = 0;
   int index_i = 0;
   int index_d = 0;
@@ -221,7 +215,14 @@ void loop() {
   
   if (callFake && time>3300000) {
     Serial.println("Calling Fake");
-    fakeQuarter();
+    fakeQuarter(QUARTER1_S,QUARTER1_I,QUARTER1_D);
+    delay(500);
+    fakeQuarter(QUARTER2_S,QUARTER2_I,QUARTER2_D);
+    delay(500);
+    fakeQuarter(QUARTER3_S,QUARTER3_I,QUARTER3_D);
+    delay(500);
+    fakeQuarter(QUARTER4_S,QUARTER4_I,QUARTER4_D);
+
     callFake=false;
   }
 
